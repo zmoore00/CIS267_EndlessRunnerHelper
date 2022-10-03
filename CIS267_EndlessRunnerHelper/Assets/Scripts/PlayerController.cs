@@ -31,6 +31,8 @@ public class PlayerController : MonoBehaviour
         pScore = GetComponent<PlayerScore>();
 
         scoreGUI = GameDriver.GetComponent<ScoreGUI>();
+
+        Time.timeScale = 1;
     }
 
     // Update is called once per frame
