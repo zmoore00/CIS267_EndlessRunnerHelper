@@ -13,7 +13,6 @@ public class PlayerController : MonoBehaviour
     //gravity scale on player set to 5
     public float jumpForce;
     private bool isGrounded;
-    private PlayerScore pScore;
 
     //Connection made in Unity editor
     public GameObject GameDriver;
@@ -28,11 +27,11 @@ public class PlayerController : MonoBehaviour
         //is also attached to the player
         playerRigidBody = GetComponent<Rigidbody2D>();
 
-        pScore = GetComponent<PlayerScore>();
 
         scoreGUI = GameDriver.GetComponent<ScoreGUI>();
 
         Time.timeScale = 1;
+        PlayerScore.resetScore();
     }
 
     // Update is called once per frame
@@ -117,9 +116,9 @@ public class PlayerController : MonoBehaviour
             //increment or decement score depending on which collectable we collided with.
             //get the CollectableInfo.cs script that is attached to the script that we ran into
             //get the value of that collectable using the getCollectableValue() function
-            pScore.setPlayerScore(other.gameObject.GetComponent<CollectableInfo>().getCollectableValue());
+            PlayerScore.setPlayerScore(other.gameObject.GetComponent<CollectableInfo>().getCollectableValue());
             //change the GUI text to the current score
-            scoreGUI.setScoreGUI(pScore.getPlayerScore());
+            scoreGUI.setScoreGUI(PlayerScore.getPlayerScore());
             //destroy the collectable that we ran into
             Destroy(other.gameObject);
 

@@ -4,29 +4,29 @@ using UnityEngine;
 
 
 //Attached to player object.
-public class PlayerScore : MonoBehaviour
+public static class PlayerScore
 {
-    private int playerScore;
-    // Start is called before the first frame update
-    void Start()
-    {
-        playerScore = 0;
-    }
+    private static int playerScore;
 
 
-    public int getPlayerScore()
+    public static int getPlayerScore()
     {
         return playerScore;
     }
 
-    public void setPlayerScore(int val)
+    public static void setPlayerScore(int val)
     {
         playerScore += val;
         displayPlayerScore();
     }
 
-    public void displayPlayerScore()
+    public static void displayPlayerScore()
     {
         Debug.Log("PlayerScore: " + playerScore);
+    }
+
+    public static void resetScore()
+    {
+        playerScore = 0;
     }
 }

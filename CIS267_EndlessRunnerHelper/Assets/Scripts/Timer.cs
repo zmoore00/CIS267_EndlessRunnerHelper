@@ -7,16 +7,20 @@ using UnityEngine.SceneManagement;
 
 public class Timer : MonoBehaviour
 {
-    public float time;
+    public double time;
     private TMP_Text timeGUI;
     public Button restart;
     public Button exit;
+
+    private HighScore highscore;
+    public GameObject GameDriver;
     // Start is called before the first frame update
     void Start()
     {
         timeGUI = GetComponent<TMP_Text>();
         timeGUI.text = time + "";
 
+        highscore = GameDriver.GetComponent<HighScore>();
 
         disableButtons();
     }
@@ -25,7 +29,7 @@ public class Timer : MonoBehaviour
     void Update()
     {
         time -= Time.deltaTime;
-        timeGUI.text = time + "";
+        timeGUI.text = System.Math.Round(time,2) + "";
 
         if(time <= 0)
         {
@@ -36,6 +40,7 @@ public class Timer : MonoBehaviour
 
     void endGame()
     {
+        highscore.setHighScore();
         Time.timeScale = 0;
         enableButtons();
     }
